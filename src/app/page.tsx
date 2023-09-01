@@ -47,7 +47,7 @@ export default function Home() {
           Product Cost
         </label>
         <input
-          type="number"
+          type="text"
           id="productCost"
           name="productCost"
           value={productCost}
@@ -60,7 +60,7 @@ export default function Home() {
           Sell Price
         </label>
         <input
-          type="number"
+          type="text"
           id="sellPrice"
           name="sellPrice"
           value={sellPrice}
@@ -73,7 +73,7 @@ export default function Home() {
           Quantity
         </label>
         <input
-          type="number"
+          type="text"
           id="quantity"
           name="quantity"
           value={quantity}
