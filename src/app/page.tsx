@@ -9,22 +9,28 @@ const currencyCodes: { [key: string]: string } = {
 };
 
 export default function Home() {
-  const [productCost, setProductCost] = useState<number>(0);
-  const [sellPrice, setSellPrice] = useState<number>(0);
-  const [quantity, setQuantity] = useState<number>(0);
+  const [productCost, setProductCost] = useState<number>(0.0); // Update initial value
+  const [sellPrice, setSellPrice] = useState<number>(0.0); // Update initial value
+  const [quantity, setQuantity] = useState<number>(0.0); // Update initial value
   const [currency, setCurrency] = useState<string>('USD');
+  const [cardVisible, setCardVisible] = useState<boolean>(false);
 
   const handleCheck = () => {
     const profit = sellPrice - productCost;
     const revenue = sellPrice * quantity - productCost * quantity;
+    const total = productCost + sellPrice * quantity;
 
     const formattedProfit = formatCurrency(profit);
     const formattedRevenue = formatCurrency(revenue);
+    const formatTotal = formatCurrency(total);
 
     setResult({
       profit: formattedProfit,
       revenue: formattedRevenue,
+      total: formatTotal,
     });
+
+    setCardVisible(true);
   };
 
   const formatCurrency = (value: number): string => {
@@ -35,51 +41,55 @@ export default function Home() {
     }).format(value);
   };
 
-  const [result, setResult] = useState<{ profit: string; revenue: string }>({
+  const [result, setResult] = useState<{ profit: string; revenue: string; total: string }>({
     profit: '',
     revenue: '',
+    total: '',
   });
 
   return (
-    <div className="flex flex-col space-y-4 justify-center items-center">
+    <div className="flex flex-col h-screen space-y-4 justify-center items-center bg-gray-100">
       <div>
         <label htmlFor="productCost" className="block text-gray-700 font-semibold">
           Product Cost
         </label>
         <input
-          type="text"
-          id="productCost"
-          name="productCost"
-          value={productCost}
-          onChange={(e) => setProductCost(Number(e.target.value))}
-          className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
-        />
-      </div>
-      <div>
-        <label htmlFor="sellPrice" className="block text-gray-700 font-semibold">
-          Sell Price
-        </label>
-        <input
-          type="text"
-          id="sellPrice"
-          name="sellPrice"
-          value={sellPrice}
-          onChange={(e) => setSellPrice(Number(e.target.value))}
-          className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
-        />
-      </div>
-      <div>
-        <label htmlFor="quantity" className="block text-gray-700 font-semibold">
-          Quantity
-        </label>
-        <input
-          type="text"
-          id="quantity"
-          name="quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(Number(e.target.value))}
-          className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
-        />
+    type="number"
+    step="0.01"
+    id="productCost"
+    name="productCost"
+    value={productCost}
+    onChange={(e) => setProductCost(parseFloat(e.target.value))}
+    className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
+  />
+</div>
+<div>
+  <label htmlFor="sellPrice" className="block text-gray-700 font-semibold">
+    Sell Price
+  </label>
+  <input
+    type="number"
+    step="0.01"
+    id="sellPrice"
+    name="sellPrice"
+    value={sellPrice}
+    onChange={(e) => setSellPrice(parseFloat(e.target.value))}
+    className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
+  />
+</div>
+<div>
+  <label htmlFor="quantity" className="block text-gray-700 font-semibold">
+    Quantity
+  </label>
+  <input
+    type="number"
+    step="0.01"
+    id="quantity"
+    name="quantity"
+    value={quantity}
+    onChange={(e) => setQuantity(parseFloat(e.target.value))}
+    className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
+  />
       </div>
       <div>
         <label htmlFor="currency" className="block text-gray-700 font-semibold">
@@ -105,10 +115,12 @@ export default function Home() {
       >
         Check
       </button>
-      <div className="text-3xl font-sans font-bold space-y-2 bg-gray-100 shadow-md p-4 rounded-md">
-        <h2>Profit: {result.profit}</h2>
-        <h2>Revenue: {result.revenue}</h2>
+      <div className={`text-3xl font-mono font-bold space-y-2 bg-zinc-800 text-gray-100 shadow-md p-4 m-4 rounded-md text-center ${cardVisible ? 'block' : 'hidden'}`} id='card'>
+        <h2>Profit Margin: <span className='text-emerald-500'>{result.profit}</span></h2>
+        <h2>Total Profit: <span className='text-emerald-500'>{result.revenue}</span></h2>
+        <h2>Revenue: <span className='text-emerald-500'>{result.total}</span></h2>
       </div>
     </div>
   );
 }
+
