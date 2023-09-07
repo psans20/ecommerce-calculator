@@ -34,7 +34,7 @@ export default function Home() {
       revenue: formattedRevenue,
       total: formatTotal,
       invest: formatInvest,
-      sold: sold
+      sold: sold.toString()
     });
 
     setCardVisible(true);
