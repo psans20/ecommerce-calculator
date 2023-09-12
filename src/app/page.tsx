@@ -187,7 +187,7 @@ export default function Home() {
       </div>
 
 
-      <div className="fixed bottom-16 text-center">
+      <div className="text-center">
 <h2>Developed by <a href='https://hyperxstudio.netlify.app/'  target="_blank" className='font-semibold underline text-blue-500'>HyperXStudio</a></h2>
       </div>
     </div>
