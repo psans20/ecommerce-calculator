@@ -185,6 +185,11 @@ export default function Home() {
         <h2>Total Profit: <span className='text-emerald-500'>{result.revenue}</span></h2>
         <h2>Revenue: <span className='text-teal-500'>{result.total}</span></h2>
       </div>
+
+
+      <div className="fixed bottom-16 text-center">
+<h2>Developed by <a href='https://hyperxstudio.netlify.app/'  target="_blank" className='font-semibold underline text-blue-500'>HyperXStudio</a></h2>
+      </div>
     </div>
   );
 }
