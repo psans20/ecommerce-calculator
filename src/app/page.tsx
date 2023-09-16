@@ -79,9 +79,9 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col h-screen space-y-4 justify-center items-center bg-gray-100">
-        <div>
-        <label htmlFor="productCost" className="block text-gray-700 font-semibold">
+    <div className="flex flex-col h-screen space-y-4 md:justify-center items-center bg-gray-100">
+        <div className='mt-4 md:mt-0'>
+        <label htmlFor="balance" className="block text-gray-700 font-semibold">
          Balance
         </label>
         <input
@@ -94,6 +94,7 @@ export default function Home() {
           className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
         />
       </div>
+      
       <div>
         <label htmlFor="productCost" className="block text-gray-700 font-semibold">
           Product Cost
