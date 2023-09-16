@@ -13,6 +13,7 @@ export default function Home() {
   const [sellPrice, setSellPrice] = useState<number>(0.0);
   const [quantity, setQuantity] = useState<number>(0.0);
   const [investment, setInvestment] = useState<number>(0.0);
+  const [balance, setBalance] = useState<number>(0.0);
   const [currency, setCurrency] = useState<string>('USD');
   const [activeTab, setActiveTab] = useState<string>('Sold'); // Initialize to 'Sold'
   const [cardVisible, setCardVisible] = useState<boolean>(false);
@@ -23,18 +24,21 @@ export default function Home() {
             const revenue =  (activeTab === 'Sold' ? profit * quantity : profit * sold);
     const total =  (activeTab === 'Sold' ? sellPrice * quantity : sellPrice * sold);
     const invest = productCost * quantity;
+    const capital = balance - invest + total;
 
     const formattedProfit = formatCurrency(profit);
     const formattedRevenue = formatCurrency(revenue);
     const formatTotal = formatCurrency(total);
     const formatInvest = formatCurrency(invest);
+    const formatCapital = formatCurrency(capital);
 
     setResult({
       profit: formattedProfit,
       revenue: formattedRevenue,
       total: formatTotal,
       invest: formatInvest,
-      sold: sold.toString()
+      sold: sold.toString(),
+      capital: formatCapital
     });
 
     setCardVisible(true);
@@ -54,16 +58,42 @@ export default function Home() {
     total: string;
     invest: string;
     sold: string;
+    capital: string;
   }>({
     profit: '',
     revenue: '',
     total: '',
     invest: '',
-    sold: ''
+    sold: '',
+    capital: ''
   });
+
+  function validate(inputString: string) {
+    // Remove non-digit and non-decimal characters from the input string
+    const cleanedString = inputString.replace(/[^\d.]/g, '');
+  
+    // Parse the cleaned string as a floating-point number
+    const numberValue = parseFloat(cleanedString);
+  
+    return numberValue;
+  }
 
   return (
     <div className="flex flex-col h-screen space-y-4 justify-center items-center bg-gray-100">
+        <div>
+        <label htmlFor="productCost" className="block text-gray-700 font-semibold">
+         Balance
+        </label>
+        <input
+          type="number"
+          step="0.01"
+          id="balance"
+          name="balance"
+          value={balance}
+          onChange={(e) => setBalance(parseFloat(e.target.value))}
+          className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
+        />
+      </div>
       <div>
         <label htmlFor="productCost" className="block text-gray-700 font-semibold">
           Product Cost
@@ -184,6 +214,15 @@ export default function Home() {
         <h2>Profit Margin: <span className='text-emerald-500'>{result.profit}</span></h2>
         <h2>Total Profit: <span className='text-emerald-500'>{result.revenue}</span></h2>
         <h2>Revenue: <span className='text-teal-500'>{result.total}</span></h2>
+        <h2>Balance: <span    className={`${
+      validate(result.capital) < 0
+        ? "text-red-500"
+        : validate(result.capital) < 1000
+        ? "text-red-500"
+        : validate(result.capital) < 10000
+        ? "text-yellow-500"
+        : "text-green-500"
+    }`}>{result.capital}</span></h2>
       </div>
 
 
