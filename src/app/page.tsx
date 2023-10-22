@@ -228,7 +228,7 @@ export default function Home() {
 
 
       <div className="text-center">
-<h2>Developed by <a href='https://hyperxstudio.netlify.app/'  target="_blank" className='font-semibold underline text-blue-500'>HyperXStudio</a></h2>
+<h2>Developed by <a href='https://umarhussain.netlify.app/'  target="_blank" className='font-semibold underline text-blue-500'>Umar Hussain</a></h2>
       </div>
     </div>
   );
