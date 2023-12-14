@@ -79,7 +79,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col bg-[#0f1214] h-screen space-y-4 md:justify-center items-center">
+    <div className="flex flex-col bg-[#0f1214] md:h-screen h-full space-y-4 md:justify-center items-center">
         <div className='mt-4 md:mt-0'>
         <label htmlFor="balance" className="block text-white font-semibold">
          Capital
