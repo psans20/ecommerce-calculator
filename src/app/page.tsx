@@ -79,10 +79,10 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col h-screen space-y-4 md:justify-center items-center bg-gray-100">
+    <div className="flex flex-col bg-[#0f1214] h-screen space-y-4 md:justify-center items-center">
         <div className='mt-4 md:mt-0'>
-        <label htmlFor="balance" className="block text-gray-700 font-semibold">
-         Balance
+        <label htmlFor="balance" className="block text-white font-semibold">
+         Capital
         </label>
         <input
           type="number"
@@ -91,13 +91,13 @@ export default function Home() {
           name="balance"
           value={balance}
           onChange={(e) => setBalance(parseFloat(e.target.value))}
-          className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
+          className="w-full px-4 py-2 mt-1 border bg-[#24272c] border-[#24272c] text-white rounded-lg focus:ring focus:ring-blue-200"
         />
       </div>
       
       <div>
-        <label htmlFor="productCost" className="block text-gray-700 font-semibold">
-          Product Cost
+        <label htmlFor="productCost" className="block text-white font-semibold">
+        Buy Price
         </label>
         <input
           type="number"
@@ -106,11 +106,11 @@ export default function Home() {
           name="productCost"
           value={productCost}
           onChange={(e) => setProductCost(parseFloat(e.target.value))}
-          className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
+          className="w-full px-4 py-2 mt-1 border bg-[#24272c] border-[#24272c] text-white rounded-lg focus:ring focus:ring-blue-200"
         />
       </div>
       <div>
-        <label htmlFor="sellPrice" className="block text-gray-700 font-semibold">
+        <label htmlFor="sellPrice" className="block text-white font-semibold">
           Sell Price
         </label>
         <input
@@ -120,12 +120,12 @@ export default function Home() {
           name="sellPrice"
           value={sellPrice}
           onChange={(e) => setSellPrice(parseFloat(e.target.value))}
-          className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
+          className="w-full px-4 py-2 mt-1 border bg-[#24272c] border-[#24272c] text-white rounded-lg focus:ring focus:ring-blue-200"
         />
       </div>
       {activeTab === 'Sold' ? ( // Conditionally render based on the active tab
         <div>
-          <label htmlFor="quantity" className="block text-gray-700 font-semibold">
+          <label htmlFor="quantity" className="block text-white font-semibold">
             Quantity
           </label>
           <input
@@ -135,12 +135,12 @@ export default function Home() {
             name="quantity"
             value={quantity}
             onChange={(e) => setQuantity(parseFloat(e.target.value))}
-            className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
+            className="w-full px-4 py-2 mt-1 border bg-[#24272c] border-[#24272c] text-white rounded-lg focus:ring focus:ring-blue-200"
           />
         </div>
       ) : (
         <div>
-          <label htmlFor="investment" className="block text-gray-700 font-semibold">
+          <label htmlFor="investment" className="block text-white font-semibold">
             Investment
           </label>
           <input
@@ -150,12 +150,12 @@ export default function Home() {
             name="investment"
             value={investment}
             onChange={(e) => setInvestment(parseFloat(e.target.value))}
-            className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
+            className="w-full px-4 py-2 mt-1 border bg-[#24272c] border-[#24272c] text-white rounded-lg focus:ring focus:ring-blue-200"
           />
         </div>
       )}
       <div>
-        <label htmlFor="currency" className="block text-gray-700 font-semibold">
+        <label htmlFor="currency" className="block text-white font-semibold">
           Currency
         </label>
         <select
@@ -163,7 +163,7 @@ export default function Home() {
           name="currency"
           value={currency}
           onChange={(e) => setCurrency(e.target.value)}
-          className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-200"
+          className="w-full px-4 py-2 mt-1 border bg-[#24272c] border-[#24272c] text-white rounded-lg focus:ring focus:ring-blue-200"
         >
           <option value="USD">USD</option>
           <option value="GBP">GBP</option>
@@ -172,7 +172,7 @@ export default function Home() {
         </select>
       </div>
       <div>
-        <label className="block text-gray-700 font-semibold text-center p-4">Select a Tab</label>
+        <label className="block text-white font-semibold text-center p-4">Select a Tab</label>
         <div className="flex space-x-4">
           <button
             onClick={() => setActiveTab('Sold')}
@@ -228,7 +228,7 @@ export default function Home() {
 
 
       <div className="text-center">
-<h2>Developed by <a href='https://umarhussain.netlify.app/'  target="_blank" className='font-semibold underline text-blue-500'>Umar Hussain</a></h2>
+<h2 className='text-white'>Developed by <a href='https://hyperxstudio.netlify.app/'  target="_blank" className='font-semibold underline text-blue-500'>HyperXStudio</a></h2>
       </div>
     </div>
   );
